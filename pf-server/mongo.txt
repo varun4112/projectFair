@@ -1,0 +1,35 @@
+sql
+-relational database
+-table with row & col
+-uses fixed schema
+-supports rich set data base
+-declarative query language
+-ACID property (atomicity consistence isolation and durability)
+-uses traditional buisness application
+
+mongodb
+-document oriented database
+-dynamic schema
+-limited set of data base
+-expressive language based json
+-CAP property (consistency availablity & tolerance)
+-using big data and real time web application
+
+
+MONGOOSE 
+
+mongoose.moduule is one of the most powerful modulles of node.js. MOngoose is a mongo ODM ( Object Document Model). that is used to translaate the code and its representation fom MongoDB to Node.js server.
+
+Advantages of Mongoose Module.
+-collection of validation of mongoBD dtabase can be done easily.
+-Preddefined strusture can be implemented on th collection.
+-constrains can be applied to documents of collection using Mongoose.
+
+-install mongoose - npm install mongoose
+-create folder for defining details 
+-create connection file to get connection from process.env
+-import connection to index.js
+
+Schema 
+-everything in mongoose starts with a Schema. Each schema maps to a MongoDB and defines the shape of the documents within that collection
+-it can also be implemented using validation
