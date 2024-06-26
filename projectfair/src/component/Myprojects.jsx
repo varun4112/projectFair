@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Addprojects from "./Addprojects";
-import { userProjectAPI,deleteProjectAPI } from "../services/allAPI";
+import { userProjectAPI, deleteProjectAPI } from "../services/allAPI";
 import {
   addProjectsResponseContext,
   editProjectResponseContext,
@@ -9,9 +9,8 @@ import { Alert, Toast, ToastContainer } from "react-bootstrap";
 import { toast } from "react-toastify";
 import EditProject from "./EditProject";
 
-
 function Myprojects() {
-  const [editProjectResponse, setEditProjectResponse] = useState(
+  const { editProjectResponse, setEditProjectResponse } = useContext(
     editProjectResponseContext
   );
 
@@ -19,6 +18,7 @@ function Myprojects() {
     addProjectsResponseContext
   );
   const [userProjects, setUserProjects] = useState([]);
+  // console.log(userProjects);
 
   const getUserStorage = async () => {
     if (sessionStorage.getItem("token")) {
@@ -50,14 +50,12 @@ function Myprojects() {
       authorization: `Bearer ${token}`,
     };
 
-    const result= await deleteProjectAPI(id,reqHeader)
-    if(result.status===200){
-      getUserStorage()
+    const result = await deleteProjectAPI(id, reqHeader);
+    if (result.status === 200) {
+      getUserStorage();
+    } else {
+      console.log(result.response.data);
     }
-    else{
-      console.log(result.response.data)
-    }
-
   };
 
   return (
@@ -71,7 +69,7 @@ function Myprojects() {
           </div>
           {addProjectsResponse.title ? (
             <Alert className="bg-success" dismissible>
-              {addProjectsResponse.title}
+              {addProjectsResponse.title}{" "}
               <span>Added Sucessfully</span>
             </Alert>
           ) : null}

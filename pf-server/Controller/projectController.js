@@ -2,7 +2,6 @@ const projects = require("../Model/projectSchema");
 // addProjects
 
 exports.addProjects = async (req, res) => {
-  console.log("inside add project");
   const userId = req.payload;
   const projectimage = req.file.filename;
   console.log(projectimage);
@@ -74,8 +73,10 @@ exports.getHomeProject = async (req, res) => {
 exports.editProject = async (req, res) => {
   const { id } = req.params;
   const userId = req.payload;
-  const { title, language, overview, github, website, projectimage } = req.body;
-  console.log("reqBody", reqBody);
+  const projectimage = req.file.filename;
+  console.log("projectimage",projectimage)
+  const { title, language, overview, github, website } = req.body;
+  console.log("reqBody", req.body);
   const uploadProjectImage = req.file ? req.file.filename : projectimage;
   try {
     const updateProject = await projects.findByIdAndUpdate(

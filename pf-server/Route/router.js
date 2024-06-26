@@ -30,11 +30,9 @@ router.get(
 );
 
 // getAllUserProjects
-
 router.get("/projects/all", jwtMiddleware, projectController.getAllProject);
 
 // getHomeProjects
-
 router.get("/projects/home-projects", projectController.getHomeProject);
 
 // editProject

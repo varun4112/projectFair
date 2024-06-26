@@ -17,10 +17,10 @@ function Addprojects() {
     website: "",
     projectimage: "",
   });
-  console.log(projectDetails);
+  // console.log(projectDetails);
 
   const [token, setToken] = useState("");
-  console.log("token", token);
+  // console.log("token", token);
 
   // converting image file to URL
 
@@ -35,7 +35,7 @@ function Addprojects() {
       setPreview(URL.createObjectURL(projectDetails.projectimage));
     }
   }, [projectDetails.projectimage]);
-  console.log(preview);
+  // console.log(preview);
 
   useEffect(() => {
     if (sessionStorage.getItem("token")) {
@@ -74,9 +74,9 @@ function Addprojects() {
         "content-type": "multipart/form-data",
         authorization: `Bearer ${token}`,
       };
-      console.log("REQBODY", Object.fromEntries(reqBody.entries()));
+      // console.log("REQBODY", Object.fromEntries(reqBody.entries()));
 
-      console.log("req header", reqHeader);
+      // console.log("req header", reqHeader);
       const result = await addProjectAPI(reqBody, reqHeader);
       if (result.status === 200) {
         console.log(result.data);

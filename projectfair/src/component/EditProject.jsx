@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import Projectcard from "./Projectcard";
 import { BASE_URL } from "../services/baseURL";
 import { editProjectAPI } from "../services/allAPI";
 import { editProjectResponseContext } from "../Contexts/ContextShare";
+
+
+
 function EditProject({ item }) {
-  const { editProjectResponse, setEditProjectResponse } = useState(
+  const { editProjectResponse, setEditProjectResponse } = useContext(
     editProjectResponseContext
   );
   //  function to close modal
@@ -28,7 +31,7 @@ function EditProject({ item }) {
 
   // function to edit data
   const [preview, setPreview] = useState("");
-  console.log("PREVIEW", preview);
+  // console.log("PREVIEW", preview);
 
   const [projectDetails, setProjectDetails] = useState({
     id: item._id,
@@ -41,7 +44,7 @@ function EditProject({ item }) {
   });
 
   const [token, setToken] = useState("");
-  console.log("token", token);
+  // console.log("token", token);
 
   useEffect(() => {
     if (projectDetails.projectimage) {
@@ -87,13 +90,14 @@ function EditProject({ item }) {
           authorization: `Bearer ${token}`,
         };
         const result = await editProjectAPI(id, reqBody, reqHeader);
+        // console.log("result", result);
         // api call
         if (result.status === 200) {
           handleClose();
-          setEditProjectResponse(result.response.data);
+          setEditProjectResponse(result.data);
         } else {
-          console.log(result);
-          console.log(result.response.data);
+          // console.log(result);
+          console.log(result.data);
         }
       } else {
         const reqHeader = {
@@ -106,12 +110,11 @@ function EditProject({ item }) {
           handleClose();
         } else {
           console.log(result);
-          console.log(result.response.data);
         }
       }
     }
   };
-  console.log(projectDetails);
+  // console.log(projectDetails);
   // end of edit data
 
   return (

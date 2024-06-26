@@ -8,7 +8,7 @@ function Myprofile() {
     github: "",
     website: "",
   });
-  console.log(profileDetails);
+  // console.log(profileDetails);
 
   // const handleProfileAdd = async (e) => {
   //   e.preventDefault();
